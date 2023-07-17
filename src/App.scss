@@ -1,0 +1,16 @@
+@import "./styles/variables.scss";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200&display=swap');
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Noto Serif JP', serif;
+    text-align: center;
+    min-width: fit-content;
+}

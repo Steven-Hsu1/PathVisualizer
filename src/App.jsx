@@ -1,8 +1,19 @@
-import { useState } from 'react'
-import './App.css'
+import "./App.scss"
+
+import LandingPage from "./components/LandingPage/LandingPage"
+import Board from "./components/Board/Board"
+import Header from "./components/Header/Header"
+import Option from "./components/Option/Option"
+import { useState } from "react"
 
 function App() {
-  return <div>Hi</div>
+
+    return (<div className="App">
+        <LandingPage />
+        {/* <Header />
+        <Option />
+        <Board /> */}
+    </div>);
 }
 
-export default App
+export default App;

@@ -1,19 +1,22 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.scss"
 
 import LandingPage from "./components/LandingPage/LandingPage"
-import Board from "./components/Board/Board"
-import Header from "./components/Header/Header"
-import Option from "./components/Option/Option"
-import { useState } from "react"
+import Visualizer from "./components/Visualizer/Visualizer";
+// import { useState } from "react"
 
 function App() {
-
-    return (<div className="App">
-        <LandingPage />
-        {/* <Header />
-        <Option />
-        <Board /> */}
-    </div>);
+    return (
+    <>
+        <Router>
+            <Routes>
+                <Route path="/"
+                    exact element={<LandingPage />} />
+                <Route path="/visualizer"
+                    element={<Visualizer />} />
+            </Routes>
+        </Router>
+    </>);
 }
 
 export default App;

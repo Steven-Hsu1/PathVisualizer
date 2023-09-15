@@ -33,6 +33,8 @@ const Board = () => {
         const startNode = grid[NODE_START_ROW][NODE_START_COL];
         const endNode = grid[NODE_END_ROW][NODE_END_COL];
         let path = AStar(startNode, endNode);
+        startNode.isWall = false;
+        endNode.isWall = false;
         setPath(path.path);
         setVisitedNodes(path.visitedNodes);
     }
@@ -48,7 +50,7 @@ const Board = () => {
     const addNeighbors = (grid) => {
         for (let i = 0; i < rows; i++) {
             for (let j = 0; j < cols; j++) {
-                grid[i][j].addneighbors(grid)
+                grid[i][j].getUnvisitedNeighbors(grid)
             }
         }
     }
@@ -61,10 +63,14 @@ const Board = () => {
         this.g = 0;
         this.f = 0;
         this.h = 0;
+        this.isWall = false;
+        if (Math.random(1) < 0.2) {
+            this.isWall = true;
+        }
         this.neighbors = [];
         this.previous = undefined;
         //add all adjacent neighbors for curr x,y position
-        this.addneighbors = function(grid) {
+        this.getUnvisitedNeighbors = function(grid) {
             let x = this.x;
             let y = this.y;
             if (x > 0) this.neighbors.push(grid[x-1][y]);
@@ -81,7 +87,7 @@ const Board = () => {
                     className="rowWrapper">
                         {
                             row.map((col, cidx) => {
-                                const {isStart, isEnd} = col;
+                                const {isStart, isEnd, isWall} = col;
                                 return (
                                     <Node 
                                     key={cidx} 
@@ -89,6 +95,7 @@ const Board = () => {
                                     isEnd={isEnd}
                                     row={ridx}
                                     col={cidx}
+                                    isWall={isWall}
                                     />
                                 )
                             })
